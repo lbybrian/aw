@@ -1,0 +1,119 @@
+[
+    {
+        "domain": "163.com",
+        "account": "abc@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "a1b@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "ab1c@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "a1bc@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "ab1c@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "a1b@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "asc@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "rwww@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "dda@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "ssa@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "cdsa@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "dzd@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    },
+    {
+        "domain": "163.com",
+        "account": "dzz@163.com",
+        "type": "通用",
+        "password": "12345678",
+        "ciphertext": "aab93ec26f3c581a05314a17671ae736",
+        "valid": "有效",
+        "check": "2019-02-11 12:22 08"
+    }
+]

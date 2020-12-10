@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<script src="libs/jquery.min.js"></script>
+	<script src="libs/bootstrap/bootstrap.min.js"></script>
+	<script src="libs/webCpu.js"></script>
+	<title>Demo</title>
+	<link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css" />
+	<style>
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			padding: 0px;
+		}
+
+		* {
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+		}
+
+		.CardItem_title>.breadcrumb {
+			padding-left: 15px !important;
+		}
+
+		.box {
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			border-radius: 3px;
+			font-size: 30px;
+			padding: 1em;
+			background-color: #f2f2f2;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			-webkit-transition: .3s color, .3s border;
+			transition: .3s color, .3s border;
+		}
+
+
+		[class*="loader-"] {
+			display: inline-block;
+			width: 1em;
+			height: 1em;
+			color: inherit;
+			vertical-align: middle;
+			pointer-events: none;
+		}
+
+		.loader-16 {
+			-webkit-transform: rotateZ(45deg);
+			transform: rotateZ(45deg);
+			-webkit-perspective: 1000px;
+			perspective: 1000px;
+			border-radius: 50%;
+		}
+
+		.loader-16:before,
+		.loader-16:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: inherit;
+			height: inherit;
+			border-radius: 50%;
+			-webkit-animation: 1s spin linear infinite;
+			animation: 1s spin linear infinite;
+		}
+
+		.loader-16:before {
+			-webkit-transform: rotateX(70deg);
+			transform: rotateX(70deg);
+		}
+
+		.loader-16:after {
+			-webkit-transform: rotateY(70deg);
+			transform: rotateY(70deg);
+			-webkit-animation-delay: .4s;
+			animation-delay: .4s;
+		}
+
+		@-webkit-keyframes rotate {
+			0% {
+				-webkit-transform: translate(-50%, -50%) rotateZ(0deg);
+				transform: translate(-50%, -50%) rotateZ(0deg);
+			}
+
+			100% {
+				-webkit-transform: translate(-50%, -50%) rotateZ(360deg);
+				transform: translate(-50%, -50%) rotateZ(360deg);
+			}
+		}
+
+		@keyframes rotate {
+			0% {
+				-webkit-transform: translate(-50%, -50%) rotateZ(0deg);
+				transform: translate(-50%, -50%) rotateZ(0deg);
+			}
+
+			100% {
+				-webkit-transform: translate(-50%, -50%) rotateZ(360deg);
+				transform: translate(-50%, -50%) rotateZ(360deg);
+			}
+		}
+
+		@-webkit-keyframes rotateccw {
+			0% {
+				-webkit-transform: translate(-50%, -50%) rotate(0deg);
+				transform: translate(-50%, -50%) rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: translate(-50%, -50%) rotate(-360deg);
+				transform: translate(-50%, -50%) rotate(-360deg);
+			}
+		}
+
+		@keyframes rotateccw {
+			0% {
+				-webkit-transform: translate(-50%, -50%) rotate(0deg);
+				transform: translate(-50%, -50%) rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: translate(-50%, -50%) rotate(-360deg);
+				transform: translate(-50%, -50%) rotate(-360deg);
+			}
+		}
+
+		@-webkit-keyframes spin {
+
+			0%,
+			100% {
+				box-shadow: .2em 0px 0 0px currentcolor;
+			}
+
+			12% {
+				box-shadow: .2em .2em 0 0 currentcolor;
+			}
+
+			25% {
+				box-shadow: 0 .2em 0 0px currentcolor;
+			}
+
+			37% {
+				box-shadow: -.2em .2em 0 0 currentcolor;
+			}
+
+			50% {
+				box-shadow: -.2em 0 0 0 currentcolor;
+			}
+
+			62% {
+				box-shadow: -.2em -.2em 0 0 currentcolor;
+			}
+
+			75% {
+				box-shadow: 0px -.2em 0 0 currentcolor;
+			}
+
+			87% {
+				box-shadow: .2em -.2em 0 0 currentcolor;
+			}
+		}
+
+		@keyframes spin {
+
+			0%,
+			100% {
+				box-shadow: .2em 0px 0 0px currentcolor;
+			}
+
+			12% {
+				box-shadow: .2em .2em 0 0 currentcolor;
+			}
+
+			25% {
+				box-shadow: 0 .2em 0 0px currentcolor;
+			}
+
+			37% {
+				box-shadow: -.2em .2em 0 0 currentcolor;
+			}
+
+			50% {
+				box-shadow: -.2em 0 0 0 currentcolor;
+			}
+
+			62% {
+				box-shadow: -.2em -.2em 0 0 currentcolor;
+			}
+
+			75% {
+				box-shadow: 0px -.2em 0 0 currentcolor;
+			}
+
+			87% {
+				box-shadow: .2em -.2em 0 0 currentcolor;
+			}
+		}
+	</style>
+
+</head>
+
+<body style="width: 100%; height: 100%; position: relative;"></body>
+<p style="text-align: center; font-size: 16px; padding: 5px 0px; margin: 0px; width: 100%; position: absolute;">鉴权中...
+</p>
+<div class="box">
+	<div class="loader-16"></div>
+</div>
+<script>
+	WebAdapter.load("http://localhost:8081/libs/authorize.js", function () {
+		var authItem = new GolaxyAuthorize({
+			authUrl: "http://10.170.130.179:8443/cas/oauth2.0/authorize",
+			appId: "znqbs",
+			host: "localhost:8081",
+			redirect: "http://localhost/callback.html",
+			home: "http://localhost"
+		});
+	});
+</script>
+
+</html>

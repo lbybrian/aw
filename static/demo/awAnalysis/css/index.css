@@ -1,0 +1,184 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+}
+
+body {
+    background: url(../images/bg.png) no-repeat center center;
+}
+
+
+.CardItem_title .navbar-nav a {
+    color: rgba(255, 230, 115, 1);
+    font-weight: 200;
+}
+
+.CardItem_title .navbar-nav .dropdown-menu a {
+    color: #333;
+}
+
+.CardItem_title .navbar-header {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.CardItem_mask .glyphicon-remove-circle {
+    color: #fff;
+}
+
+[mouldname="main"] .main>.CardItem>.CardItem_contentArea>.CardItem_mask .glyphicon-remove-circle {
+    color: #222;
+}
+
+
+
+
+.CardItem_title a.navbar-brand {
+    color: rgb(2, 82, 149);
+    text-indent: 40px;
+    background: url(../images/logo.png) no-repeat;
+    background-size: 50px 50px;
+    cursor: text;
+    font-weight: 200;
+}
+
+.CardItem_title li a:hover {
+    background-color: rgba(34, 34, 69, 0.36);
+}
+
+.CardItem_title .navbar-nav:first-child {
+    padding-top: 10px;
+}
+
+.CardItem_title .navbar-brand {
+    font-size: 28px;
+}
+
+.CardItem_title>.breadcrumb li {
+    color: rgba(134, 134, 152, 0.9);
+    font-weight: 200;
+}
+
+.CardItem[cardname=main] {
+    background-color: rgba(34, 34, 52, 0.9);
+}
+
+.ListMenu .panel-title a {
+    color: rgba(255, 230, 115, 1);
+}
+
+.ListMenu .panel {
+    background: transparent;
+    border-color: #444;
+}
+
+.ListMenu .panel-heading {
+    background: transparent;
+}
+
+.ListMenu .list-group-item {
+    background: transparent;
+}
+
+.CardItem[cardname=leftItem] .list-group-item a,
+.CardItem[cardname=rightItem] .list-group-item a {
+    border-bottom: solid 1px #333;
+    color: rgba(255, 230, 115, 1);
+}
+
+.CardItem[cardname=leftItem] .list-group-item[active="1"] a {
+    color: rgb(14, 80, 146);
+}
+
+.CardItem[cardname=rightItem] .panel-body {
+    color: rgba(255, 230, 115, 1);
+}
+
+.CardItem[cardname=centerItem] table tr td:nth-child(1) {
+    text-align: left;
+}
+.CardItem[cardname=centerItem] table tr td:nth-child(2) {
+    text-align: left;
+}
+.CardItem[cardname=centerItem] table tr th>div{
+    justify-content: center;
+}
+.CardItem[cardname=centerItem] table tr th:nth-child(1)>div {
+    justify-content: left;
+}
+.CardItem[cardname=centerItem] table tr th:nth-child(2)>div {
+    justify-content: left;
+}
+
+.CardItem[cardname=leftItem] .panel-collapse {
+    max-height: 425px;
+    overflow: auto;
+}
+
+.nav>li>a:focus, .nav>li>a:hover  {
+    background-color: transparent !important;
+}
+
+.FormItem_content input {
+    background: #f2f2f2 !important;
+}
+
+.DataTable_tdContent[key=account],
+.DataTable_tdContent[key=uid]{
+    max-width: 300px;
+}
+/* password */
+.DataTable_tdContent[key=password]{
+    max-width: 180px;
+}
+
+.DataTable_tdContent[key=result] {
+    max-width: 450px;
+}
+
+.DataTable_tdContent[key=users],
+.DataTable_tdContent[key=domain] {
+    max-width: 250px;
+}
+
+
+.panel-group a {
+    cursor: pointer;
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/*滚动槽*/
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(255, 255, 250, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4);
+}
+
+
+
+.CardItem_title>.breadcrumb {
+    padding-left: 15px !important;
+}

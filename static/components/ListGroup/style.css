@@ -1,0 +1,7 @@
+.ListGroup {
+    background: transparent;
+}
+
+.list-group-item {
+    cursor: pointer;
+}

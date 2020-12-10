@@ -1,0 +1,12 @@
+[
+  {
+    "name": "admin",
+    "dRight": "all",
+    "fRight": "all"
+  },
+  {
+    "name": "guest",
+    "dRight": "色情,黑客工具",
+    "fRight": "暗网态势,综合检索,站点导航,数据监控"
+  }
+]

@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <script src="libs/jquery.min.js"></script>
+  <script src="libs/bootstrap/bootstrap.min.js"></script>
+  <script src="libs/moment.js"></script>
+  <script src="libs/webCpu.js"></script>
+  <title>暗网数据分析系统</title>
+  <style>
+    .box {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-radius: 3px;
+      font-size: 30px;
+      padding: 1em;
+      background-color: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-transition: .3s color, .3s border;
+      transition: .3s color, .3s border;
+    }
+
+
+    [class*="loader-"] {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      color: inherit;
+      vertical-align: middle;
+      pointer-events: none;
+    }
+
+    .loader-16 {
+      -webkit-transform: rotateZ(45deg);
+      transform: rotateZ(45deg);
+      -webkit-perspective: 1000px;
+      perspective: 1000px;
+      border-radius: 50%;
+    }
+
+    .loader-16:before,
+    .loader-16:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      -webkit-animation: 1s spin linear infinite;
+      animation: 1s spin linear infinite;
+    }
+
+    .loader-16:before {
+      -webkit-transform: rotateX(70deg);
+      transform: rotateX(70deg);
+    }
+
+    .loader-16:after {
+      -webkit-transform: rotateY(70deg);
+      transform: rotateY(70deg);
+      -webkit-animation-delay: .4s;
+      animation-delay: .4s;
+    }
+
+    @-webkit-keyframes rotate {
+      0% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(0deg);
+        transform: translate(-50%, -50%) rotateZ(0deg);
+      }
+
+      100% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(360deg);
+        transform: translate(-50%, -50%) rotateZ(360deg);
+      }
+    }
+
+    @keyframes rotate {
+      0% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(0deg);
+        transform: translate(-50%, -50%) rotateZ(0deg);
+      }
+
+      100% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(360deg);
+        transform: translate(-50%, -50%) rotateZ(360deg);
+      }
+    }
+
+    @-webkit-keyframes rotateccw {
+      0% {
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: translate(-50%, -50%) rotate(-360deg);
+        transform: translate(-50%, -50%) rotate(-360deg);
+      }
+    }
+
+    @keyframes rotateccw {
+      0% {
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: translate(-50%, -50%) rotate(-360deg);
+        transform: translate(-50%, -50%) rotate(-360deg);
+      }
+    }
+
+    @-webkit-keyframes spin {
+
+      0%,
+      100% {
+        box-shadow: .2em 0px 0 0px currentcolor;
+      }
+
+      12% {
+        box-shadow: .2em .2em 0 0 currentcolor;
+      }
+
+      25% {
+        box-shadow: 0 .2em 0 0px currentcolor;
+      }
+
+      37% {
+        box-shadow: -.2em .2em 0 0 currentcolor;
+      }
+
+      50% {
+        box-shadow: -.2em 0 0 0 currentcolor;
+      }
+
+      62% {
+        box-shadow: -.2em -.2em 0 0 currentcolor;
+      }
+
+      75% {
+        box-shadow: 0px -.2em 0 0 currentcolor;
+      }
+
+      87% {
+        box-shadow: .2em -.2em 0 0 currentcolor;
+      }
+    }
+
+    @keyframes spin {
+
+      0%,
+      100% {
+        box-shadow: .2em 0px 0 0px currentcolor;
+      }
+
+      12% {
+        box-shadow: .2em .2em 0 0 currentcolor;
+      }
+
+      25% {
+        box-shadow: 0 .2em 0 0px currentcolor;
+      }
+
+      37% {
+        box-shadow: -.2em .2em 0 0 currentcolor;
+      }
+
+      50% {
+        box-shadow: -.2em 0 0 0 currentcolor;
+      }
+
+      62% {
+        box-shadow: -.2em -.2em 0 0 currentcolor;
+      }
+
+      75% {
+        box-shadow: 0px -.2em 0 0 currentcolor;
+      }
+
+      87% {
+        box-shadow: .2em -.2em 0 0 currentcolor;
+      }
+    }
+
+    body,
+    html {
+      background: #333;
+    }
+  </style>
+
+</head>
+
+<body style="width: 100%; height: 100%; position: relative;">
+  <div class="box">
+    <div class="loader-16"></div>
+  </div>
+</body>
+
+<script>
+  var eHost = "192.168.2.105:5080";
+  var host = "192.168.2.105:8080";
+
+  webCpu.params = {
+    siteTypes: {
+
+    },
+    pageTypes: {
+
+    },
+    langMap: {
+
+    }
+  }
+
+  webCpu.bindEnter = function (elem, callback) {
+    $(elem).unbind("keydown");
+    $(elem).bind("keydown", function (e) {
+      // 兼容FF和IE和Opera
+      var theEvent = e || window.event;
+      var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+      if (code == 13) {
+        //回车执行查询
+        if(typeof(callback) === "function") {
+          callback();
+        }
+        else {
+          $(callback).click();
+        }
+        
+      }
+    });
+  }
+
+  webCpu.loginDialog = function (callback, flag) {
+    var card = webCpu.cards._main;
+    card.task.logined = null;
+    var option = {
+      url: "demo/awAnalysis/card/signInCard.js",
+      key: "signInCard",
+      callback: function (c, d, t) {
+        d.task.loginCallback = callback || function (data, user) {
+          if (data && data.data && data.data[0]) {
+            card.task.logined = data.data[0];
+            delete card.task.logined.password;
+            WebTool.cookie("logined", JSON.stringify(card.task.logined), 0.1);
+            location.href = "/"
+          }
+        }
+      }
+    }
+    webCpu.CardItem.cardDialog(card, option.url, "请登录", {
+      width: "550px",
+      height: "400px",
+      closeDisabled: flag
+    }, option);
+  }
+
+  webCpu.modifyPass = function (callback) {
+    var card = webCpu.cards._main;
+
+    var option = {
+      url: "demo/awAnalysis/card/modifyPassCard.js",
+      key: "modifyPassCard",
+      callback: function (c, d, t) {
+        d.task.callback = callback || function (data, user) {
+          if (data.status === 0) {
+            webCpu.CardItem.dismissMask(card);
+          } else {
+
+          }
+        }
+      }
+    }
+    webCpu.CardItem.cardDialog(card, option.url, "修改密码", {
+      width: "550px",
+      height: "400px"
+    }, option);
+  }
+
+  var tModule = {
+    url: "demo/awAnalysis/index.js",
+    interface: "roles",
+    flag: 0,
+    callback: function (c, d, t) {
+      console.log("-------------");
+      console.log(t);
+      console.log("-------------");
+    }
+  };
+
+  var logined = JSON.parse(WebTool.cookie("logined")) || {};
+  webCpu.logined = logined.name || "guest";
+
+  var url = "http://" + host + "/data-analysis/common/types";
+
+  function transTypeData(data) {
+    var param = {
+      "": "所有"
+    };
+    if (data && data.constructor.name === "Array") {
+      for (var i = 0; i < data.length; i++) {
+        param[data[i].key] = data[i].label;
+      }
+    }
+    return param;
+  }
+
+  $.get("gateway", {
+    url: url,
+    from: 0,
+    limit: 1000,
+    method: "get"
+  }, function (d) {
+    webCpu.params.siteTypes = transTypeData(d.data.siteTypes);
+    webCpu.params.siteTypes["-"] = "未知";
+    webCpu.params.pageTypes = transTypeData(d.data.pageTypes);
+    webCpu.params.pageTypes["-"] = "未知";
+    webCpu.params.langMap = d.data.langMap;
+    webCpu.exec(document.body, tModule, {
+      script: {
+        config: "demo/awAnalysis/config.js",
+        tooltip: "demo/awAnalysis/tooltip.js",
+        dateRange: "libs/dateRange/daterangepicker.js"
+      },
+      css: {
+        bootstrap: "libs/bootstrap/bootstrap.min.css",
+        index: "demo/awAnalysis/css/index.css",
+        dateRange: "libs/dateRange/daterangepicker.css"
+      },
+      logined: "",
+      url: "gateway",
+      query: {
+        url: "http://" + host + "/common-rest/store/v2.1/aw/role",
+        query: {
+          name: logined.role
+        }
+      },
+      requestType: "get",
+      dataType: "json",
+      promise: {
+        beforeRender: function (c, d, t) {
+          t.logined = logined;
+          if (t.logined && logined.role && d.data && d.data[0]) {
+            webCpu.logined = t.logined.name;
+            t.role = d.data[0];
+            t.app.callback = function (data) {
+              var name = t.logined.name || "guest";
+
+              data.titleData.rightMenu[0].name =
+                "<span class='glyphicon glyphicon-user loginedName'></span><span style='margin-left: 5px;'>" +
+                name + "</span>";
+              var tMenu = data.titleData.menu;
+              var rArr = t.role.fRight;
+              for (var i = 0; i < tMenu.length; i++) {
+                var name = tMenu[i].name;
+                if (rArr.indexOf(name) !== -1 || tMenu[i].fixed) {
+                  tMenu[i].auth = true;
+                }
+              }
+            };
+          } else {
+            t.logined = null;
+            console.log("用户未登录或者用户的角色已失效。")
+          }
+        },
+        afterRender: function (c, d, t) {
+          if (!t.logined) {
+            webCpu.loginDialog();
+          }
+        }
+      }
+    });
+  }, "json");
+</script>
+
+</html>
